@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,13 +16,17 @@ import androidx.lifecycle.LiveData;
 import java.util.ArrayList;
 import java.util.List;
 
+//tämä on eri lailla kuin videon esimerkissä...
+
 //public class AdapterFrag2 extends ArrayAdapter<String> {
 public class AdapterFrag2 extends ArrayAdapter<LiveData<List<RWEntity>>>{
+//public class AdapterFrag2 extends AdapterView<AdapterFrag2.AdapterFrag> { //videolla extends recylerView.Adapter
     private Context context;
     //ArrayList<String> arraylist; //ArrayList onko eri kuin datasetti??
     //ArrayList<RWEntity> arraylist; //menikö  nyt sinne tietokannan puolelle suoraan
     LiveData<List<RWEntity>> arraylist;
 
+    //tämä on video esimerkissä nimetty Holderiksi... ja tänne on mäpätty ne R.id...
     public AdapterFrag2(@NonNull Context context, int resource,@NonNull List objects){
         super(context, resource, objects);
         this.context=context;

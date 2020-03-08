@@ -24,6 +24,11 @@ public class Fragmentti1 extends Fragment {
     private Button buttoni;
     private TextView textView; //editText?
 
+    public interface IFragmentti1 { //8.3.2020
+        void onButtonPressed();
+    }
+    private IFragmentti1 mListener; //8.3.2020
+
     private Fragmentti1ViewModel mViewModel;
 
     public static Fragmentti1 newInstance() {
@@ -34,8 +39,19 @@ public class Fragmentti1 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         //return inflater.inflate(R.layout.fragmentti1_fragment, container, false);
-        View v = inflater.inflate(R.layout.fragmentti1_fragment, container, false);
+        View v = inflater.inflate(R.layout.fragmentti1_fragment, container, false); //miksi kaatuu jo tässä
         //ennenkuin piirretään, otetaan kiinni komponentit, joita käytettään:editTektit ja buttonit.
+
+        textView = v.findViewById(R.id.inputti);
+        buttoni =v.findViewById(R.id.nappi);
+        buttoni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onButtonPressed();
+            }
+        });
+
+
         return  v;
     }
 
