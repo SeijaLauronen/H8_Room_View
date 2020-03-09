@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,9 @@ public class Fragmentti1 extends Fragment {
         void onButtonPressed();
     }
     private IFragmentti1 mListener; //8.3.2020
+    public Fragmentti1() {
+        // Required empty public constructor //9.3.2020 lisätty tämä, auttaako kaatumisiin? AUTTAAAAA
+    }
 
     private Fragmentti1ViewModel mViewModel;
 
@@ -47,12 +51,34 @@ public class Fragmentti1 extends Fragment {
         buttoni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onButtonPressed();
+                mListener.onButtonPressed(); //KAATUU jos painaa nappia
             }
         });
 
 
         return  v;
+    }
+
+// 9.3.2020 5harjoitustouhu perusteella tämä. tuli runko automatic, kun alkoi kirjoittaa onAt
+    //JAAHAS; TÄMÄ KAATAA, laitetaan kommentteihin. Lakkasi kaatumasta kun teki tuon tyhjän konstruktorin!!!!
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context); // 9.3.2020 kaatuu tässä
+        if (context instanceof IFragmentti1){
+            mListener = (IFragmentti1) context;
+        }else {
+
+            throw new RuntimeException(context.toString()
+                    + " must implement IFragmentti1");
+        }
+    }
+
+    //9.3.2020 laitoin varalta tämänkin, 5harjoitustouhu mallin mukaan
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
     @Override
@@ -68,8 +94,8 @@ public class Fragmentti1 extends Fragment {
         // TODO: Use the ViewModel
 //mViewModel.listRWLiveData.observe();
 
-        mViewModel = new ViewModelProvider(this).get(Fragmentti1ViewModel.class);
-
+        //mViewModel = new ViewModelProvider(this).get(Fragmentti1ViewModel.class); //tälleesti oli videoon 7 asti.
+        mViewModel = new ViewModelProvider(getActivity()).get(Fragmentti1ViewModel.class); //videolla 7 laussa selitettiin, miksi tämä parempi un fragmentti
         //ei voinut viitata tulleesti listRWLiveData:an, johtuiko ViewProviderin muuttamiseta?
         /*
         mViewModel.listRWLiveData.observe(getViewLifecycleOwner(), new Observer<List<RWEntity>>() {
@@ -88,6 +114,7 @@ public class Fragmentti1 extends Fragment {
                 //Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
                 //Toast.makeText(Fragmentti1.this, "onChanged", Toast.LENGTH_SHORT).show();
                 // Täältä vinkki: https://stackoverflow.com/questions/10770055/use-toast-inside-fragment
+
                 Toast.makeText(getActivity(), "onChanged FR1", Toast.LENGTH_SHORT).show();
 
             }
