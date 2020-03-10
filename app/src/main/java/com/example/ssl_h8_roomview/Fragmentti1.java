@@ -26,7 +26,7 @@ public class Fragmentti1 extends Fragment {
     private TextView textView; //editText?
 
     public interface IFragmentti1 { //8.3.2020
-        void onButtonPressed();
+        void onButtonPressed(CharSequence inputTxt); //10.3.2020 lisäsin tuon inputTekstin tuohon
     }
     private IFragmentti1 mListener; //8.3.2020
     public Fragmentti1() {
@@ -48,10 +48,14 @@ public class Fragmentti1 extends Fragment {
 
         textView = v.findViewById(R.id.inputti);
         buttoni =v.findViewById(R.id.nappi);
+
         buttoni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onButtonPressed(); //KAATUU jos painaa nappia
+
+                CharSequence inputTxt = textView.getText();
+                mListener.onButtonPressed(inputTxt); //KAATUU jos painaa nappia, ei kaadu enää
+                //laitetaankohan save tänne vai välitetäänkö kenties tuo teksti täältä mainlayoutille?
             }
         });
 
@@ -121,5 +125,7 @@ public class Fragmentti1 extends Fragment {
         });
 
     }
+
+
 
 }

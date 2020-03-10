@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity implements Fragmentti1.IFrag
             .commit();
     }
     @Override
-    public void onButtonPressed() {
-        Toast.makeText(getApplicationContext(), "Apua!", Toast.LENGTH_LONG).show();
+    public void onButtonPressed(CharSequence input) { //10.3.2020 lisäsin tuon inputin tuohon
+        Toast.makeText(getApplicationContext(), input, Toast.LENGTH_LONG).show();
+        //String textToSave = inputti pitääkö tämän tulla fragmentin interfacessa
     }
 }
