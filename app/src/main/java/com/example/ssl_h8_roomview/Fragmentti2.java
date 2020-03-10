@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -21,6 +23,12 @@ import java.util.List;
 public class Fragmentti2 extends Fragment {
 
     private Fragmentti2ViewModel mViewModel;
+
+    //10.3.2020 kuva 48
+    ListView listView;
+    ArrayAdapter<String> stringArrayAdapter;
+
+
 
     private LiveData<List<RWEntity>> fraglistRWLiveData; //9.3.2020 tästä en kyllä yhtään tiedä, että tämäkö tänne näin???
 
@@ -36,7 +44,23 @@ public class Fragmentti2 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragmentti2_fragment, container, false);
+        //return inflater.inflate(R.layout.fragmentti2_fragment, container, false);
+        //10.3.2020 kuva 48
+        View v = inflater.inflate(R.layout.fragmentti2_fragment, container, false);
+
+        //this.listView=v.findViewById(R.id.listView);
+
+        //kuva 51: siinä android.R.id... miksi ei ota minulla?
+        /*
+        stringArrayAdapter =new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.id.textViewListItem);
+        listView.setAdapter(stringArrayAdapter);
+        */
+        /*
+        AdapterFrag2 adapterFrag2 = new AdapterFrag2(getActivity().getApplicationContext(),R.id.textViewListItem);
+        listView.setAdapter(adapterFrag2);
+        */
+        //ÄH, eikö se listview ole jo tuolla AdapterFrag2:ssa laitettu...
+        return v;
     }
 
     @Override

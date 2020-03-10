@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
 
 //9.3.2020 tähän piti laittaa tuo implements fragmentti interface, jotta saa buttonin painalluksen
 //No eipä auta, kaatuu napin painalluksesta. Ahaa, fragmenttiin piti tehdä pari juttua!!
@@ -14,6 +15,14 @@ public class MainActivity extends AppCompatActivity implements Fragmentti1.IFrag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //10.3.2020 livedata
+        LiveData<String> livedata;
+        //livedata.hasObservers();
+
+
+
+
         getSupportFragmentManager()
             .beginTransaction()
             .add(R.id.FragmenttiEKA,Fragmentti1.newInstance())

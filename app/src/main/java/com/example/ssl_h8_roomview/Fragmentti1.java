@@ -1,5 +1,6 @@
 package com.example.ssl_h8_roomview;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
@@ -49,6 +50,7 @@ public class Fragmentti1 extends Fragment {
         textView = v.findViewById(R.id.inputti);
         buttoni =v.findViewById(R.id.nappi);
 
+        /*
         buttoni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +60,30 @@ public class Fragmentti1 extends Fragment {
                 //laitetaankohan save tänne vai välitetäänkö kenties tuo teksti täältä mainlayoutille?
             }
         });
+        */
+        //10.3.2020 tehdäänpä uusiksi tuo onClick
+        buttoni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                //kuva 58
+                /*
+                LiveData<String> tmp;
+                tmp.observe(getViewLifecycleOwner(), new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+
+                    }
+                });
+                */
+
+                RWEntity rwEntity = new RWEntity();
+                CharSequence inputTxt = (CharSequence)textView.getText();
+                rwEntity.teksti = inputTxt.toString();
+                mViewModel.insert(rwEntity );
+
+            }
+        });
 
         return  v;
     }
